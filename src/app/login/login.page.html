@@ -1,0 +1,25 @@
+<ion-content class="ion-padding" color="secondary" color="primary">
+ <p align="center">
+   <img src="/assets/logo.png">
+  </p>
+  <h1 align="center">Selamat Datang di <b>UpSen</b></h1>
+  <h2></h2>
+  <ion-item color="secondary">
+    <ion-label position="floating">
+      <ion-icon name="person"></ion-icon>
+      Nama Pengguna
+    </ion-label>
+    <ion-input type="text" [(ngModel)]="username"></ion-input>
+  </ion-item>
+  <ion-item color="secondary">
+    <ion-label position="floating">
+      <ion-icon name="key"></ion-icon>
+      Kata Sandi
+    </ion-label>
+    <ion-input type="password" [(ngModel)]="password"></ion-input>
+  </ion-item>
+  <br>
+  <ion-button expand="block" color="tertiary" (click)="login()">Login</ion-button>
+  <br><p align="center">Pastikan akun anda sudah terdaftar!</p>
+
+</ion-content>

@@ -1,0 +1,161 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start" >
+      <ion-back-button defaultHref="/dosen" color="secondary"></ion-back-button>
+   </ion-buttons>
+    <ion-title>UPSEN</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content color="secondary">
+  <p align="center">
+    <img src="/assets/logo.png">
+  </p>
+  <h1 align="center">Absen Sekarang</h1>
+  <h2></h2>
+
+  <ion-card>
+    <ion-item>
+      <ion-select placeholder="Tahun Ajaran" [(ngModel)]="qrdata[0]">
+        <ion-select-option value="2017/2018">2017/2018</ion-select-option>
+        <ion-select-option value="2018/2019">2018/2019</ion-select-option>
+        <ion-select-option value="2019/2020">2019/2020</ion-select-option>
+        <ion-select-option value="2020/2021">2020/2021</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+    <ion-select placeholder ="Jenjang" [(ngModel)]="qrdata[1]">
+      <ion-select-option value="D3">D3</ion-select-option>
+      <ion-select-option value="D4">D4</ion-select-option>
+    </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-select placeholder="Program" [(ngModel)]="qrdata[2]">
+        <ion-select-option value="Teknik Informatika">Teknik Informatika</ion-select-option>
+        <ion-select-option value="Multimedia dan Jaringan">Multimedia Dan Jaringan</ion-select-option>
+        <ion-select-option value="Animasi">Animasi</ion-select-option>
+        <ion-select-option value="Teknik Geomatika">Teknik Geomatika</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-select placeholder ="Semester" [(ngModel)]="qrdata[3]">
+        <ion-select-option value="Genap">Genap</ion-select-option>
+        <ion-select-option value="Ganjil">Ganjil</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-select placeholder="Kelas" [(ngModel)]="qrdata[4]">
+        <ion-select-option value="Reguler">Reguler</ion-select-option>
+         <ion-select-option value="Karyawan">Karyawan</ion-select-option>
+        <ion-select-option value="Batamindo">Batamindo</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-select placeholder="Kelas Perkuliahan" [(ngModel)]="qrdata[5]">
+        <ion-select-option value="A">A</ion-select-option>
+        <ion-select-option value="B">B</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-select placeholder="Mata Kuliah" [(ngModel)]="qrdata[6]">
+        <ion-select-option value="Proyek Akhir 1">Proyek Akhir 1</ion-select-option>
+        <ion-select-option value="Pemrograman Mobile">Pemrograman Mobile</ion-select-option>
+        <ion-select-option value="Pemrograman Perangkat Keras">Pemrograman Berbasis Perangkat Keras</ion-select-option>
+        <ion-select-option value="Multimedia">Multimedia</ion-select-option>
+        <ion-select-option value="Jaringan Komputer">Jaringan Komputer</ion-select-option>
+        <ion-select-option value="Kecerdasan Buatan">Kecerdasan Buatan</ion-select-option>
+        <ion-select-option value="Bahasa Inggris">Bahasa Inggris</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-list>
+        <ion-radio-group value="Jenis Perkuliahan" [(ngModel)]="qrdata[7]">
+          <ion-list-header>
+            <ion-label>Jenis Perkuliahan</ion-label>
+          </ion-list-header>
+      
+          <ion-item>
+            <ion-label>Teori</ion-label>
+            <ion-radio slot="start" value="Teori"></ion-radio>
+          </ion-item>
+      
+          <ion-item>
+            <ion-label>Praktikum</ion-label>
+            <ion-radio slot="start" value="Praktikum"></ion-radio>
+          </ion-item>
+        </ion-radio-group>
+      </ion-list>
+    </ion-item>
+    <ion-item>
+      <ion-list>
+        <ion-radio-group value="Metode Perkuliahan" [(ngModel)]="qrdata[8]">
+          <ion-list-header>
+            <ion-label>Metode Perkuliahan</ion-label>
+          </ion-list-header>
+      
+          <ion-item>
+            <ion-label>Tatap Muka</ion-label>
+            <ion-radio slot="start" value="Tatap muka"></ion-radio>
+          </ion-item>
+      
+          <ion-item>
+            <ion-label>Online</ion-label>
+            <ion-radio slot="start" value="Online"></ion-radio>
+          </ion-item>
+        </ion-radio-group>
+      </ion-list>
+    </ion-item>
+    <ion-item>
+      <ion-select placeholder="Minggu" [(ngModel)]="qrdata[9]">
+        <ion-select-option value="1">1</ion-select-option>
+        <ion-select-option value="2">2</ion-select-option>
+        <ion-select-option value="3">3</ion-select-option>
+        <ion-select-option value="4">4</ion-select-option>
+        <ion-select-option value="5">5</ion-select-option>
+        <ion-select-option value="6">6</ion-select-option>
+        <ion-select-option value="7">7</ion-select-option>
+        <ion-select-option value="8">8</ion-select-option>
+        <ion-select-option value="9">9</ion-select-option>
+        <ion-select-option value="10">10</ion-select-option>
+        <ion-select-option value="11">11</ion-select-option>
+        <ion-select-option value="12">12</ion-select-option>
+        <ion-select-option value="13">13</ion-select-option>
+        <ion-select-option value="14">14</ion-select-option>
+        <ion-select-option value="15">15</ion-select-option>
+        <ion-select-option value="16">16</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-select placeholder="Sesi" [(ngModel)]="qrdata[10]">
+        <ion-select-option value="1">1</ion-select-option>
+        <ion-select-option value="2">2</ion-select-option>
+        <ion-select-option value="3">3</ion-select-option>
+        <ion-select-option value="4">4</ion-select-option>
+        <ion-select-option value="5">5</ion-select-option>
+        <ion-select-option value="6">6</ion-select-option>
+        <ion-select-option value="7">7</ion-select-option>
+        <ion-select-option value="8">8</ion-select-option>
+        <ion-select-option value="9">9</ion-select-option>
+        <ion-select-option value="10">10</ion-select-option>
+        <ion-select-option value="11">11</ion-select-option>
+        <ion-select-option value="12">12</ion-select-option>
+        <ion-select-option value="13">13</ion-select-option>
+        <ion-select-option value="14">14</ion-select-option>
+        <ion-select-option value="15">15</ion-select-option>
+        <ion-select-option value="16">16</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Description</ion-label>
+      <ion-textarea padding [(ngModel)]="qrdata[11]"></ion-textarea>
+    </ion-item>
+    <ion-button (click)="genqr()" expand="full">Generate QR</ion-button>
+  </ion-card>
+  <!-- <ion-button expand="block" fill="outline" color="primary">Generate QR Code</ion-button> -->
+
+  <ion-card *ngIf="ditekan">
+    <ngx-qrcode [qrc-value]="qrdata_isi" [qrc-element-type]="elementType" qrc-class="my-code">
+    </ngx-qrcode>
+  </ion-card>
+
+</ion-content>

@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>UPSEN</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content color="tertiary">
+  <ion-card color="secondary">
+    <ion-card-content>
+      <b>Selamat Datang!</b><br>
+      <br>
+      {{email}}<br>
+      NIM : {{nim}}<br>
+      <br>
+      <ion-datetime displayFormat="MMM DD, YYYY  HH:mm" [min]="" [max]="" [(ngModel)]="selectedDateString"></ion-datetime>
+    </ion-card-content>
+  </ion-card>
+  <ion-button expand="full" (click)="scanCode()" color="primary">
+    <ion-icon name="qr-Scanner"></ion-icon>
+    Scan QR
+  </ion-button>
+
+  <ion-card *ngIf="scannedCode">
+    <ion-card-content>
+      Result from Scan: {{ scannedCode }}
+    </ion-card-content>
+  </ion-card>
+
+  <ion-button expand="full" color="primary">Lihat Data Absensi Pribadi</ion-button>
+</ion-content>

@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>UPSEN</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content color="tertiary">
+  <ion-card color="secondary">
+    <ion-card-content>
+      <b>Selamat Datang!</b><br>
+      <br>
+      {{email}}<br>
+      NIDN : {{nim}}<br>
+      <br>
+      <ion-datetime displayFormat="MMM DD, YYYY  HH:mm" [min]="" [max]="" [(ngModel)]="selectedDateString"></ion-datetime>
+    </ion-card-content>
+  </ion-card>
+  <ion-button expand="full" color="primary" [routerLink]="['/home']" >Absensi</ion-button>
+  <ion-button expand="full" color="primary">Lihat Data Absensi Mahasiswa</ion-button>
+
+</ion-content>
