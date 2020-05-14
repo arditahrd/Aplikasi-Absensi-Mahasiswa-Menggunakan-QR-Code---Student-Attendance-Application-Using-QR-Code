@@ -32,10 +32,14 @@ export class LoginPage implements OnInit {
           this.storage.set('email', data.email)
           this.storage.set('uid', data.uid)
           this.storage.set('nim', hasil.val().nim)
+          this.storage.set('nama',hasil.val().nama )
+          this.storage.set('kelas',hasil.val().kelas )
 
           //akses
           if (hasil.val().akses == "Dosen") {
             this.route.navigate(['/dosen'])
+          }else if(hasil.val().akses == "TU"){
+            this.route.navigate(['/tu'])
           } else {
             this.route.navigate(['/mhs'])
           }

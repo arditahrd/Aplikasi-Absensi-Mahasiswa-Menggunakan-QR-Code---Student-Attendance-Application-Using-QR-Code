@@ -3,20 +3,25 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>UPSEN</ion-title>
+    <ion-title>UPSEN Mahasiswa</ion-title>
   </ion-toolbar>
 </ion-header>
 <ion-content color="tertiary">
   <ion-card color="secondary">
     <ion-card-content>
-      <b>Selamat Datang!</b><br>
+     <h3>Selamat Datang !</h3>
+
+      <h2>Nama : {{nama}}</h2>
+      <h2>NIDN : {{nim}} </h2>
+      <h2>Kelas: {{kelas}}</h2>
       <br>
-      {{email}}<br>
-      NIM : {{nim}}<br>
-      <br>
-      <ion-datetime displayFormat="MMM DD, YYYY  HH:mm" [min]="" [max]="" [(ngModel)]="selectedDateString"></ion-datetime>
+      <ion-label>
+        Saat ini anda sedang login sebagai <b>Mahasiswa</b>. Pada 
+        <ion-datetime displayFormat="MMM DD, YYYY  HH:mm" [min]="" [max]="" [(ngModel)]="selectedDateString"></ion-datetime>
+      </ion-label>
     </ion-card-content>
   </ion-card>
+
   <ion-button expand="full" (click)="scanCode()" color="primary">
     <ion-icon name="qr-Scanner"></ion-icon>
     Scan QR

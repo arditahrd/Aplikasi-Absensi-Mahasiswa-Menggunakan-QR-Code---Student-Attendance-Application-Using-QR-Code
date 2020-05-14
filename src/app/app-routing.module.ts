@@ -34,7 +34,24 @@ const routes: Routes = [
   {
     path: 'historymhs',
     loadChildren: () => import('./historymhs/historymhs.module').then( m => m.HistorymhsPageModule)
+  },
+  {
+    path: 'tu',
+    loadChildren: () => import('./tu/home/home.module').then( m => m.HomePageModule)
+  },  {
+    path: 'create-absen',
+    loadChildren: () => import('./dosen/create-absen/create-absen.module').then( m => m.CreateAbsenPageModule)
+  },
+  {
+    path: 'scan-qr',
+    loadChildren: () => import('./mhs/scan-qr/scan-qr.module').then( m => m.ScanQrPageModule)
+  },
+  {
+    path: 'riwayat-absen',
+    loadChildren: () => import('./mhs/riwayat-absen/riwayat-absen.module').then( m => m.RiwayatAbsenPageModule)
   }
+
+
 ];
 
 @NgModule({

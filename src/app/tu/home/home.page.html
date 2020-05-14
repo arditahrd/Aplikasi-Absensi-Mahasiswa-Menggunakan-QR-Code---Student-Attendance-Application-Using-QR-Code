@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>UPSEN Dosen</ion-title>
+    <ion-title>UPSEN Tata Usaha</ion-title>
   </ion-toolbar>
 </ion-header>
 <ion-content color="tertiary">
@@ -11,12 +11,12 @@
     <ion-card-content>
      <h3>Selamat Datang !</h3>
 
-      <h2>Nama : {{nama}}</h2>
+      <h2>Nama : {{nama}}</h2><br>
       <h2>NIDN : {{nim}} </h2><br>
       
       <br>
       <ion-label>
-        Saat ini anda sedang login sebagai <b>Dosen</b>. Pada 
+        Saat ini anda sedang login sebagai <b>Tata Usaha</b>. Pada 
         <ion-datetime displayFormat="MMM DD, YYYY  HH:mm" [min]="" [max]="" [(ngModel)]="selectedDateString"></ion-datetime>
       </ion-label>
     </ion-card-content>
@@ -29,10 +29,10 @@
     </ion-card-header>
     <ion-card-content>
       <ion-card-title>
-        Membuat Absensi
+        Lihat Absensi
       </ion-card-title>
       <ion-label>
-        Membuat Absensi dengan cara meng-generate QR Code.
+        Lihat data absensi mata kuliah
       </ion-label>
     </ion-card-content>
   </ion-card>
@@ -43,10 +43,10 @@
     </ion-card-header>
     <ion-card-content>
       <ion-card-title>
-        Melihat Data Absensi
+        Tambahkan Data Pengajaran
       </ion-card-title>
       <ion-label>
-        Melihat data absensi kelas pada tanggal tertentu.
+        Menambahkan relasi antara dosen, mata kuliah & kelas.
       </ion-label>
     </ion-card-content>
   </ion-card>

@@ -21,7 +21,6 @@ export class HomePage implements OnInit {
   maxDate:string=new Date().toISOString();
 
 
-
   constructor(
     private str: Storage,
     private nav: NavController,
@@ -31,9 +30,6 @@ export class HomePage implements OnInit {
   ) {
     this.getEmail()
     this.getNim()
-    this.getNama()
-    this.getKelas()
-
     this.platform.ready().then(()=>{
 
       let date:Date=new Date();
@@ -52,35 +48,26 @@ export class HomePage implements OnInit {
     this.getEmail()
     this.getNim()
     this.getNama()
-    this.getKelas()
-    console.log(this.email+" "+this.nim+" "+this.nama+" "+this.kelas)
   }
 
   email;
   nim;
   nama
-  kelas
-  
-  getEmail() {
-    this.str.get('email').then(data => {
+  async getNama() {
+    await this.str.get('nama').then(data => {
+      this.nama = data
+    })
+    console.log(this.nim)
+  }
+
+  async getEmail() {
+    await this.str.get('email').then(data => {
       this.email = data
     })
     console.log(this.email)
   }
-  getKelas() {
-    this.str.get('kelas').then(data => {
-      this.kelas = data
-    })
-    console.log(this.kelas)
-  }
-  getNama() {
-    this.str.get('nama').then(data => {
-      this.nama = data
-    })
-    console.log(this.nama)
-  }
-   getNim() {
-     this.str.get('nim').then(data => {
+  async getNim() {
+    await this.str.get('nim').then(data => {
       this.nim = data
     })
     console.log(this.nim)
