@@ -16,21 +16,18 @@
 
   <ion-card>
     <ion-item>
-      <ion-select placeholder="Tahun Ajaran" [(ngModel)]="qrdata[0]">
-        <ion-select-option value="2017/2018">2017/2018</ion-select-option>
-        <ion-select-option value="2018/2019">2018/2019</ion-select-option>
-        <ion-select-option value="2019/2020">2019/2020</ion-select-option>
-        <ion-select-option value="2020/2021">2020/2021</ion-select-option>
+      <ion-select placeholder="Pilih ID Kelas" [(ngModel)]="selectedState" (ionChange)="getDataKelas()">
+        <ion-select-option *ngFor="let stateObj of states" [value]="stateObj">{{stateObj.idkelas}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-select placeholder="Pilih ID matkul" [(ngModel)]="selectedDistrict">
+        <ion-select-option *ngFor="let district of selectedState.idmatkul" [value]="district">{{district}}</ion-select-option>
       </ion-select>
     </ion-item>
     <ion-item>
-    <ion-select placeholder ="Jenjang" [(ngModel)]="qrdata[1]">
-      <ion-select-option value="D3">D3</ion-select-option>
-      <ion-select-option value="D4">D4</ion-select-option>
-    </ion-select>
-    </ion-item>
-    <ion-item>
-      <ion-select placeholder="Program" [(ngModel)]="qrdata[2]">
+      <ion-select placeholder="Program" [(ngModel)]="data.prodi">
         <ion-select-option value="Teknik Informatika">Teknik Informatika</ion-select-option>
         <ion-select-option value="Multimedia dan Jaringan">Multimedia Dan Jaringan</ion-select-option>
         <ion-select-option value="Animasi">Animasi</ion-select-option>
@@ -38,7 +35,7 @@
       </ion-select>
     </ion-item>
     <ion-item>
-      <ion-select placeholder ="Semester" [(ngModel)]="qrdata[3]">
+      <ion-select placeholder ="Semester" [(ngModel)]="data.semester">
         <ion-select-option value="Genap">Genap</ion-select-option>
         <ion-select-option value="Ganjil">Ganjil</ion-select-option>
       </ion-select>
