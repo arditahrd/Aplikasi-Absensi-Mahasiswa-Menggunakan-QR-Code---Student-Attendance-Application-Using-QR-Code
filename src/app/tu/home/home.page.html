@@ -23,7 +23,7 @@
   </ion-card>
 
   <!--Menu-->
-  <ion-card>
+  <ion-card  [routerLink]="['/lihat-absen']">
     <ion-card-header>
       <img src="../../../assets/shapes.svg">
     </ion-card-header>
@@ -37,7 +37,7 @@
     </ion-card-content>
   </ion-card>
 
-  <ion-card>
+  <ion-card  [routerLink]="['/tambah-pengajaran']">
     <ion-card-header>
       <img src="../../../assets/shapes.svg">
     </ion-card-header>
@@ -51,6 +51,33 @@
     </ion-card-content>
   </ion-card>
 
+  <ion-card  [routerLink]="['/regist-mhs']">
+    <ion-card-header>
+      <img src="../../../assets/shapes.svg">
+    </ion-card-header>
+    <ion-card-content>
+      <ion-card-title>
+        Mendaftarkan akun Mahasiswa
+      </ion-card-title>
+      <ion-label>
+        Menambahkan akun baru dengan hak akses sebagai mahasiswa.
+      </ion-label>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card [routerLink]="['/regist-dosen']">
+    <ion-card-header>
+      <img src="../../../assets/shapes.svg">
+    </ion-card-header>
+    <ion-card-content>
+      <ion-card-title>
+        Mendaftarkan akun Dosen
+      </ion-card-title>
+      <ion-label>
+        Menambahkan akun baru dengan hak akses sebagai dosen.
+      </ion-label>
+    </ion-card-content>
+  </ion-card>
   <ion-button expand="full" color="primary" [routerLink]="['/home']" >Absensi</ion-button>
   <ion-button expand="full" color="primary">Lihat Data Absensi Mahasiswa</ion-button>
 

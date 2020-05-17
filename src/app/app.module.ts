@@ -15,12 +15,14 @@ import { AngularFireAuthModule } from '@angular/fire/auth'
 import { IonicStorageModule } from '@ionic/storage';
 import { AngularFireDatabaseModule} from '@angular/fire/database';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
   imports: [
     BrowserModule,
+    FormsModule,
     IonicModule.forRoot(),
     AppRoutingModule,
     AngularFireModule.initializeApp(firebaseConfig),

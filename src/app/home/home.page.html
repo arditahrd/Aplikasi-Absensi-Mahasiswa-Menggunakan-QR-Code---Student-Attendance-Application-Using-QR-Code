@@ -12,98 +12,53 @@
     <img src="/assets/logo.png">
   </p>
   <h1 align="center">Absen Sekarang</h1>
-  <h2></h2>
+ 
 
   <ion-card>
     <ion-item>
-      <ion-select placeholder="Pilih ID Kelas" [(ngModel)]="selectedState" (ionChange)="getDataKelas()">
+      <ion-label>Pilih ID Kelas</ion-label>
+      <ion-select  [(ngModel)]="selectedState" (ionChange)="getDataKelas(selectedState.idkelas)">
         <ion-select-option *ngFor="let stateObj of states" [value]="stateObj">{{stateObj.idkelas}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Kelas</ion-label>
+      <ion-input [(ngModel)]="data.kelas"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Pilih Matkul</ion-label>
+      <ion-select [(ngModel)]="data.idmatkul">
+        <ion-select-option *ngFor="let district of selectedState.idmatkul" [value]="district.kode">
+          {{district.matkul}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+    
+    <ion-item>
+      <ion-label position="stacked" style="color:black">Program Studi</ion-label>
+      <ion-input [(ngModel)]="data.prodi" disabled></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Semester</ion-label>
+      <ion-input [(ngModel)]="data.semester" disabled></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Jenis Perkuliahan</ion-label>
+      <ion-select [(ngModel)]="data.jeniskuliah">
+        <ion-select-option value="Teori">Teori</ion-select-option>
+        <ion-select-option value="Praktikum">Praktikum</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label>Metode Perkuliahan</ion-label>
+      <ion-select [(ngModel)]="data.metodekuliah">
+        <ion-select-option value="Tatap Muka">Tatap muka</ion-select-option>
+        <ion-select-option value="Online">Online</ion-select-option>
       </ion-select>
     </ion-item>
 
     <ion-item>
-      <ion-select placeholder="Pilih ID matkul" [(ngModel)]="selectedDistrict">
-        <ion-select-option *ngFor="let district of selectedState.idmatkul" [value]="district">{{district}}</ion-select-option>
-      </ion-select>
-    </ion-item>
-    <ion-item>
-      <ion-select placeholder="Program" [(ngModel)]="data.prodi">
-        <ion-select-option value="Teknik Informatika">Teknik Informatika</ion-select-option>
-        <ion-select-option value="Multimedia dan Jaringan">Multimedia Dan Jaringan</ion-select-option>
-        <ion-select-option value="Animasi">Animasi</ion-select-option>
-        <ion-select-option value="Teknik Geomatika">Teknik Geomatika</ion-select-option>
-      </ion-select>
-    </ion-item>
-    <ion-item>
-      <ion-select placeholder ="Semester" [(ngModel)]="data.semester">
-        <ion-select-option value="Genap">Genap</ion-select-option>
-        <ion-select-option value="Ganjil">Ganjil</ion-select-option>
-      </ion-select>
-    </ion-item>
-    <ion-item>
-      <ion-select placeholder="Kelas" [(ngModel)]="qrdata[4]">
-        <ion-select-option value="Reguler">Reguler</ion-select-option>
-         <ion-select-option value="Karyawan">Karyawan</ion-select-option>
-        <ion-select-option value="Batamindo">Batamindo</ion-select-option>
-      </ion-select>
-    </ion-item>
-    <ion-item>
-      <ion-select placeholder="Kelas Perkuliahan" [(ngModel)]="qrdata[5]">
-        <ion-select-option value="A">A</ion-select-option>
-        <ion-select-option value="B">B</ion-select-option>
-      </ion-select>
-    </ion-item>
-    <ion-item>
-      <ion-select placeholder="Mata Kuliah" [(ngModel)]="qrdata[6]">
-        <ion-select-option value="Proyek Akhir 1">Proyek Akhir 1</ion-select-option>
-        <ion-select-option value="Pemrograman Mobile">Pemrograman Mobile</ion-select-option>
-        <ion-select-option value="Pemrograman Perangkat Keras">Pemrograman Berbasis Perangkat Keras</ion-select-option>
-        <ion-select-option value="Multimedia">Multimedia</ion-select-option>
-        <ion-select-option value="Jaringan Komputer">Jaringan Komputer</ion-select-option>
-        <ion-select-option value="Kecerdasan Buatan">Kecerdasan Buatan</ion-select-option>
-        <ion-select-option value="Bahasa Inggris">Bahasa Inggris</ion-select-option>
-      </ion-select>
-    </ion-item>
-    <ion-item>
-      <ion-list>
-        <ion-radio-group value="Jenis Perkuliahan" [(ngModel)]="qrdata[7]">
-          <ion-list-header>
-            <ion-label>Jenis Perkuliahan</ion-label>
-          </ion-list-header>
-      
-          <ion-item>
-            <ion-label>Teori</ion-label>
-            <ion-radio slot="start" value="Teori"></ion-radio>
-          </ion-item>
-      
-          <ion-item>
-            <ion-label>Praktikum</ion-label>
-            <ion-radio slot="start" value="Praktikum"></ion-radio>
-          </ion-item>
-        </ion-radio-group>
-      </ion-list>
-    </ion-item>
-    <ion-item>
-      <ion-list>
-        <ion-radio-group value="Metode Perkuliahan" [(ngModel)]="qrdata[8]">
-          <ion-list-header>
-            <ion-label>Metode Perkuliahan</ion-label>
-          </ion-list-header>
-      
-          <ion-item>
-            <ion-label>Tatap Muka</ion-label>
-            <ion-radio slot="start" value="Tatap muka"></ion-radio>
-          </ion-item>
-      
-          <ion-item>
-            <ion-label>Online</ion-label>
-            <ion-radio slot="start" value="Online"></ion-radio>
-          </ion-item>
-        </ion-radio-group>
-      </ion-list>
-    </ion-item>
-    <ion-item>
-      <ion-select placeholder="Minggu" [(ngModel)]="qrdata[9]">
+      <ion-label>Minggu-Ke</ion-label>
+      <ion-select [(ngModel)]="data.minggu">
         <ion-select-option value="1">1</ion-select-option>
         <ion-select-option value="2">2</ion-select-option>
         <ion-select-option value="3">3</ion-select-option>
@@ -123,7 +78,8 @@
       </ion-select>
     </ion-item>
     <ion-item>
-      <ion-select placeholder="Sesi" [(ngModel)]="qrdata[10]">
+      <ion-label>Jml Sesi</ion-label>
+      <ion-select [(ngModel)]="data.sesi">
         <ion-select-option value="1">1</ion-select-option>
         <ion-select-option value="2">2</ion-select-option>
         <ion-select-option value="3">3</ion-select-option>
@@ -144,7 +100,7 @@
     </ion-item>
     <ion-item>
       <ion-label position="floating">Description</ion-label>
-      <ion-textarea padding [(ngModel)]="qrdata[11]"></ion-textarea>
+      <ion-textarea padding [(ngModel)]="data.deskripsi"></ion-textarea>
     </ion-item>
     <ion-button (click)="genqr()" expand="full">Generate QR</ion-button>
   </ion-card>

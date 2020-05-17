@@ -18,11 +18,19 @@ export class HomePage {
     private str: Storage) {
     this.fetchData()
     console.log(this.child)
+    this.getNama()
   }
   qrdata = [];
   qrdata_isi;
   ditekan = false
+  dataqr
 
+  getNama(){
+    this.str.get('nama').then(res => {
+      this.data.nama = res
+    })
+
+  }
 
   kelasterpilih: any = {
     matkul: []
@@ -33,19 +41,22 @@ export class HomePage {
   ionViewWillEnter() {
     this.fetchData()
     console.log("child=" + this.child)
+    this.getNama()
   }
 
-  genqr() {
-    if (this.qrdata[0] == null || this.qrdata[1] == null || this.qrdata[2] == null || this.qrdata[3] == null) {
+  async genqr() {
+    if (this.data.sesi == null) {
       console.log('ada data yang kosong')
     } else {
-      this.qrdata_isi = this.qrdata[0] + "\n" + this.qrdata[1] + "\n" + this.qrdata[2] + "\n" + this.qrdata[3]
+      console.log(this.data)
+      this.qrdata_isi = JSON.stringify(this.data)
       this.ditekan = true
     }
     this.ref.on('value', resp => {
       this.items = snapshotToArray(resp);
     });
   }
+
 
   addItem(items) {
     let newItem = this.ref.push();
@@ -58,7 +69,9 @@ export class HomePage {
 
   async fetchData() {
     await this.str.get('key').then(hasil => {
-      this.key = hasil
+      
+      this.data.uid = hasil
+      
     })
 
     this.dbs = await firebase.database().ref(`pengajaran`).on('value', resp => {
@@ -68,9 +81,14 @@ export class HomePage {
   }
 
   data: any = {
+    uid:null,
     nama: null,
     semester: null,
-    prodi: null
+    prodi: null,
+    deskripsi:null,
+    minggu:null,
+    sesi:null,
+    kelas:null,
   }
   datakelas
 
@@ -78,19 +96,23 @@ export class HomePage {
     console.log($event);
     }
 
-  async getDataKelas() {
-    this.dbs = await firebase.database().ref("kelas/ifb2019").on('value', hasil => {
-      this.data = snapshotToArray(hasil)
+  async getDataKelas(a) {
+    this.dbs = await firebase.database().ref("kelas/"+a).on('value',async hasil => {
+      this.data.idkelas = a
+      this.data.semester = await hasil.val().semester
+      this.data.prodi = await hasil.val().prodi
+      this.data.kelas = await hasil.val().nama 
+      
     })
     
-    console.log(this.data)
+  //  console.log(this.data)
     
     console.log('berubah jadi ' + this.selectedState)
   }
 
   states = []; // Assign the states from the json file
   selectedState: any = {
-    matkul: []
+    idmatkul: []
   };
   selectedDistrict: string;
 
