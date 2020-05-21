@@ -12,18 +12,28 @@ import { Storage } from '@ionic/storage';
 export class HomePage {
 
   items = [];
-  ref = firebase.database().ref('items/');
 
-  constructor(private toast: ToastController,
-    private str: Storage) {
+  constructor(
+    private toast: ToastController,
+    private str: Storage
+  ) {
     this.fetchData()
-    console.log(this.child)
     this.getNama()
   }
   qrdata = [];
   qrdata_isi;
   ditekan = false
   dataqr
+
+   //tanggal
+   currentDate = new Date();
+   date = this.currentDate.getDate();
+   month = this.currentDate.getMonth(); 
+   year = this.currentDate.getFullYear().toString()
+   
+   monthNames = [
+     "Jan", "Feb", "Mar", "Apr", "Mei", "Juni", "Juli", "Agu", "Sep", "Okt", "Nov", "Des"
+   ];
 
   getNama(){
     this.str.get('nama').then(res => {
@@ -40,7 +50,6 @@ export class HomePage {
 
   ionViewWillEnter() {
     this.fetchData()
-    console.log("child=" + this.child)
     this.getNama()
   }
 
@@ -51,24 +60,18 @@ export class HomePage {
       console.log(this.data)
       this.qrdata_isi = JSON.stringify(this.data)
       this.ditekan = true
+      this.notif('QR Code telah digenerate')
     }
-    this.ref.on('value', resp => {
-      this.items = snapshotToArray(resp);
-    });
+
   }
 
-
-  addItem(items) {
-    let newItem = this.ref.push();
-    newItem.set(items);
-  }
 
   child
   dbs
   key
 
   async fetchData() {
-    await this.str.get('key').then(hasil => {
+    await this.str.get('uid').then(hasil => {
       
       this.data.uid = hasil
       
@@ -89,13 +92,19 @@ export class HomePage {
     minggu:null,
     sesi:null,
     kelas:null,
+    tanggal: this.year + ', ' + this.monthNames[this.month]+ ' ' + this.date,
   }
+  
   datakelas
 
-  onChange($event){
-    console.log($event);
-    }
-
+  async notif(msg){
+    var n = await this.toast.create({
+      message: msg,
+      duration: 2000
+    })
+    n.present()
+  }
+  
   async getDataKelas(a) {
     this.dbs = await firebase.database().ref("kelas/"+a).on('value',async hasil => {
       this.data.idkelas = a
@@ -104,10 +113,6 @@ export class HomePage {
       this.data.kelas = await hasil.val().nama 
       
     })
-    
-  //  console.log(this.data)
-    
-    console.log('berubah jadi ' + this.selectedState)
   }
 
   states = []; // Assign the states from the json file

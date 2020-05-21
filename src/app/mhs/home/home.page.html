@@ -22,16 +22,33 @@
     </ion-card-content>
   </ion-card>
 
-  <ion-button expand="full" (click)="scanCode()" color="primary">
-    <ion-icon name="qr-Scanner"></ion-icon>
-    Scan QR
-  </ion-button>
+  <!--Menu-->
+  <ion-card [routerLink]="['/scan-qr']">
+    <img src="../../../assets/Scan Absensi(Halaman MHS).png">
+  <ion-card-content>
+    <ion-card-title>
+      Scan QR
+    </ion-card-title>
+    <ion-label>
+      Melakukan absensi dengan cara Scan QR code.
+    </ion-label>
+  </ion-card-content>
+</ion-card>
 
-  <ion-card *ngIf="scannedCode">
-    <ion-card-content>
-      Result from Scan: {{ scannedCode }}
-    </ion-card-content>
-  </ion-card>
+<ion-card>
+    <img src="../../../assets/Melihat Data Absensi.png">
+  
+  <ion-card-content>
+    <ion-card-title>
+      Melihat Data Absensi
+    </ion-card-title>
+    <ion-label>
+      Melihat data absensi kelas pada tanggal tertentu.
+    </ion-label>
+  </ion-card-content>
+</ion-card>
 
-  <ion-button expand="full" color="primary">Lihat Data Absensi Pribadi</ion-button>
+
+<ion-button expand="full" color="primary" (click)="changePw()">Ganti Password</ion-button>
+<ion-button expand="full" color="primary" (click)="logOut()">Log Out</ion-button>
 </ion-content>

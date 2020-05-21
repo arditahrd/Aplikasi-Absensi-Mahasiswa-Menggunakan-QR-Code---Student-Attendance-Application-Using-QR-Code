@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { NavController, ToastController, Platform } from '@ionic/angular';
+import { NavController, ToastController, Platform, AlertController } from '@ionic/angular';
 import { Router } from '@angular/router';
 
 //firebase
@@ -24,10 +24,10 @@ export class HomePage implements OnInit {
 
   constructor(
     private str: Storage,
-    private nav: NavController,
     private route: Router,
     private toast: ToastController,
-    private platform:Platform
+    private platform:Platform,
+    private alertController: AlertController
   ) {
     this.getEmail()
     this.getNim()
@@ -60,7 +60,47 @@ export class HomePage implements OnInit {
   nim;
   nama
   kelas
-  
+
+  async notif(m){
+    var n = await this.toast.create({
+      message: m,
+      duration: 2000
+    })
+    n.present()
+  }
+
+  async changePw(){
+    const alert = await this.alertController.create({
+      header: 'Confirm!',
+      message: 'Apakah anda ingin mengganti password?',
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: (blah) => {
+            console.log('Confirm Cancel: blah');
+          }
+        }, {
+          text: 'Ok',
+          handler: async () => {
+            await firebase.auth().sendPasswordResetEmail(this.email)
+            this.notif('Link ganti password telah dikirimkan ke Email anda')
+          }
+        }
+      ]
+    });
+
+    await alert.present();
+  }
+
+  async logOut(){
+    this.str.clear()
+    await firebase.auth().signOut()
+    this.route.navigate(['/login'])
+    this.notif('Akun telah berhasil log out')
+  }
+
   getEmail() {
     this.str.get('email').then(data => {
       this.email = data

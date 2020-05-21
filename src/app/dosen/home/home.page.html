@@ -23,10 +23,8 @@
   </ion-card>
 
   <!--Menu-->
-  <ion-card>
-    <ion-card-header>
-      <img src="../../../assets/shapes.svg">
-    </ion-card-header>
+  <ion-card [routerLink]="['/home']">
+      <img src="../../../assets/Membuat Absensi(Halaman Dosen).png">
     <ion-card-content>
       <ion-card-title>
         Membuat Absensi
@@ -38,9 +36,8 @@
   </ion-card>
 
   <ion-card>
-    <ion-card-header>
-      <img src="../../../assets/shapes.svg">
-    </ion-card-header>
+      <img src="../../../assets/Melihat Data Absensi.png">
+    
     <ion-card-content>
       <ion-card-title>
         Melihat Data Absensi
@@ -51,7 +48,7 @@
     </ion-card-content>
   </ion-card>
 
-  <ion-button expand="full" color="primary" [routerLink]="['/home']" >Absensi</ion-button>
-  <ion-button expand="full" color="primary">Lihat Data Absensi Mahasiswa</ion-button>
+  <ion-button expand="full" color="primary" (click)="changePw()">Ganti Password</ion-button>
+  <ion-button expand="full" color="primary" (click)="logOut()">Log Out</ion-button>
 
 </ion-content>
