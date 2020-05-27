@@ -25,17 +25,17 @@ export class HomePage {
   ditekan = false
   dataqr
 
-   //tanggal
-   currentDate = new Date();
-   date = this.currentDate.getDate();
-   month = this.currentDate.getMonth(); 
-   year = this.currentDate.getFullYear().toString()
-   
-   monthNames = [
-     "Jan", "Feb", "Mar", "Apr", "Mei", "Juni", "Juli", "Agu", "Sep", "Okt", "Nov", "Des"
-   ];
+  //tanggal
+  currentDate = new Date();
+  date = this.currentDate.getDate();
+  month = this.currentDate.getMonth();
+  year = this.currentDate.getFullYear().toString()
 
-  getNama(){
+  monthNames = [
+    "Jan", "Feb", "Mar", "Apr", "Mei", "Juni", "Juli", "Agu", "Sep", "Okt", "Nov", "Des"
+  ];
+
+  getNama() {
     this.str.get('nama').then(res => {
       this.data.nama = res
     })
@@ -61,20 +61,30 @@ export class HomePage {
       this.qrdata_isi = JSON.stringify(this.data)
       this.ditekan = true
       this.notif('QR Code telah digenerate')
+
+      await this.getDataAbsen()
     }
 
   }
 
 
+  async getDataAbsen() {
+    this.dbabsen = await firebase.database().ref(`absen_kelas/${this.data.uid}/${this.data.idkelas}/${this.data.idmatkul}/${this.data.tanggal}`).on('value', resp => {
+      this.listabsen = snapshotToArray(resp)
+    })
+  }
+
   child
   dbs
   key
+  dbabsen
+  listabsen
 
   async fetchData() {
     await this.str.get('uid').then(hasil => {
-      
+
       this.data.uid = hasil
-      
+
     })
 
     this.dbs = await firebase.database().ref(`pengajaran`).on('value', resp => {
@@ -84,34 +94,34 @@ export class HomePage {
   }
 
   data: any = {
-    uid:null,
+    uid: null,
     nama: null,
     semester: null,
     prodi: null,
-    deskripsi:null,
-    minggu:null,
-    sesi:null,
-    kelas:null,
-    tanggal: this.year + ', ' + this.monthNames[this.month]+ ' ' + this.date,
+    deskripsi: null,
+    minggu: null,
+    sesi: null,
+    kelas: null,
+    tanggal: this.year + ', ' + this.monthNames[this.month] + ' ' + this.date,
   }
-  
+
   datakelas
 
-  async notif(msg){
+  async notif(msg) {
     var n = await this.toast.create({
       message: msg,
       duration: 2000
     })
     n.present()
   }
-  
+
   async getDataKelas(a) {
-    this.dbs = await firebase.database().ref("kelas/"+a).on('value',async hasil => {
+    this.dbs = await firebase.database().ref("kelas/" + a).on('value', async hasil => {
       this.data.idkelas = a
       this.data.semester = await hasil.val().semester
       this.data.prodi = await hasil.val().prodi
-      this.data.kelas = await hasil.val().nama 
-      
+      this.data.kelas = await hasil.val().nama
+
     })
   }
 

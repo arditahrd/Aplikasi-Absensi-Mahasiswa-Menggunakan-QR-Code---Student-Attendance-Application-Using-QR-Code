@@ -1,9 +1,52 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>riwayat-absen</ion-title>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="mhs"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Riwayat Absen</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-
+<ion-content class="padding">
+  <ion-card *ngFor="let n of key">
+    <ion-card-header>
+      <ion-card-title>
+        {{n.matkul}}
+      </ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-row>
+        <ion-col>
+          Tanggal
+        </ion-col>
+        <ion-col>
+          {{n.tanggal}}
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          Jam
+        </ion-col>
+        <ion-col>
+          {{n.jam}}
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          Minggu
+        </ion-col>
+        <ion-col>
+          {{n.minggu}}
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          Jumlah Sesi
+        </ion-col>
+        <ion-col>
+          {{n.sesi}}
+        </ion-col>
+      </ion-row>
+    </ion-card-content>
+  </ion-card>
 </ion-content>

@@ -3,7 +3,7 @@
     <ion-buttons slot="start" >
       <ion-back-button defaultHref="/dosen" color="secondary"></ion-back-button>
    </ion-buttons>
-    <ion-title>UPSEN</ion-title>
+    <ion-title>Create Absensi</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -109,6 +109,27 @@
   <ion-card *ngIf="ditekan">
     <ngx-qrcode [qrc-value]="qrdata_isi" [qrc-element-type]="elementType" qrc-class="my-code">
     </ngx-qrcode>
+  </ion-card>
+
+  <ion-card *ngIf="ditekan">
+    <ion-card-header>
+      <ion-card-title>
+        Daftar Siswa Hadir
+      </ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item *ngFor="let item of listabsen">
+        <ion-label class="ion-text-wrap">
+          <ion-text color="primary">
+            <h3>{{item.nim}}</h3>
+          </ion-text>
+          <p>{{item.nama}}</p>
+          <ion-text color="success">
+            <p>Jam : {{item.jam}}</p>
+          </ion-text>
+        </ion-label>
+      </ion-item>
+    </ion-card-content>
   </ion-card>
 
 </ion-content>

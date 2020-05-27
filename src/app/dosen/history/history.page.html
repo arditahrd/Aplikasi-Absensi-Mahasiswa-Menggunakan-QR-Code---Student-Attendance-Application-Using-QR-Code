@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start" >
+      <ion-back-button defaultHref="/dosen" color="secondary"></ion-back-button>
+   </ion-buttons>
+    <ion-title>Riwayat Absensi</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card *ngFor="let x of dataAbsen">
+    <ion-card-header>
+      <ion-card-title>
+        {{x.kelas}}
+      </ion-card-title>
+      <ion-card-title>
+        {{x.matkul}}
+      </ion-card-title>
+      <ion-card-subtitle color="success">
+        Jumlah Hadir : {{x.jml_absen}} orang
+      </ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-label>
+        Yang Hadir :
+      </ion-label>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

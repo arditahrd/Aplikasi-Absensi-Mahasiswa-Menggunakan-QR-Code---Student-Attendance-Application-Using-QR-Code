@@ -49,6 +49,10 @@ const routes: Routes = [
   {
     path: 'riwayat-absen',
     loadChildren: () => import('./mhs/riwayat-absen/riwayat-absen.module').then( m => m.RiwayatAbsenPageModule)
+  },
+  {
+    path: 'history',
+    loadChildren: () => import('./dosen/history/history.module').then( m => m.HistoryPageModule)
   }
 
 
