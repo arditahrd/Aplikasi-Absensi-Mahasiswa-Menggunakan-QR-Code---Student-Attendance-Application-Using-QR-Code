@@ -104,6 +104,10 @@ export class ScanQrPage implements OnInit {
       async barcodeData => {
         this.scannedCode = barcodeData.text;
         this.data = await JSON.parse(barcodeData.text)
+
+         //get current time
+        var d = new Date();
+         this.data.jam = d.getHours() + ':' + d.getMinutes();
       }
     )
   }
