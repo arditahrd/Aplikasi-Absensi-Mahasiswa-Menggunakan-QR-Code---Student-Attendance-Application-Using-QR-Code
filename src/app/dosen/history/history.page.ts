@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import * as firebase from 'firebase'
 import { snapshotToArray } from 'src/app/firebase';
+import { Storage } from '@ionic/storage';
 
 
 @Component({
@@ -10,7 +11,9 @@ import { snapshotToArray } from 'src/app/firebase';
 })
 export class HistoryPage implements OnInit {
 
-  constructor() {
+  constructor(
+    private str: Storage,
+  ) {
     this.fetchData()
    }
 
@@ -18,12 +21,22 @@ export class HistoryPage implements OnInit {
   dataAbsen
 
   async fetchData(){
-    this.db =  await firebase.database().ref(`absen_mhs/3311801022/if214`).on('value', async val => {
+    await this.getUID()
+
+    this.db =  await firebase.database().ref(`absen_dosen/`+this.uid).on('value', async val => {
       this.dataAbsen = snapshotToArray(val)
+    })
+  }
+
+  uid
+  async getUID(){
+    await this.str.get('uid').then(res => {
+      this.uid = res
     })
   }
 
   ngOnInit() {
   }
+
 
 }

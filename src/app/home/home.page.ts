@@ -3,6 +3,7 @@ import { ToastController } from '@ionic/angular';
 import * as firebase from 'firebase';
 import { snapshotToArray } from '../firebase';
 import { Storage } from '@ionic/storage';
+import { async } from '@angular/core/testing';
 
 @Component({
   selector: 'app-home',
@@ -69,7 +70,7 @@ export class HomePage {
 
 
   async getDataAbsen() {
-    this.dbabsen = await firebase.database().ref(`absen_kelas/${this.data.uid}/${this.data.idkelas}/${this.data.idmatkul}/${this.data.tanggal}`).on('value', resp => {
+    this.dbabsen = await firebase.database().ref(`absen_kelas/${this.data.uid}/${this.data.idkelas}/${this.data.idmatkul}-${this.data.tanggal}`).on('value', resp => {
       this.listabsen = snapshotToArray(resp)
     })
   }
@@ -94,6 +95,9 @@ export class HomePage {
   }
 
   data: any = {
+    idmatkul:null,
+    matkul: null,
+    nomatkul:null,
     uid: null,
     nama: null,
     semester: null,
@@ -125,9 +129,19 @@ export class HomePage {
     })
   }
 
+  getDataLog(n){
+    console.log(n)
+
+    firebase.database().ref(`pengajaran/${this.data.idkelas}/idmatkul/`+n).on('value',async res =>{
+      this.data.idmatkul = await res.val().kode
+      this.data.matkul = await res.val().matkul
+    })
+  }
+
   states = []; // Assign the states from the json file
   selectedState: any = {
-    idmatkul: []
+    idmatkul: [],
+    idkelas: null
   };
   selectedDistrict: string;
 

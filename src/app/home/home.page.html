@@ -27,8 +27,8 @@
     </ion-item>
     <ion-item>
       <ion-label>Pilih Matkul</ion-label>
-      <ion-select [(ngModel)]="data.idmatkul">
-        <ion-select-option *ngFor="let district of selectedState.idmatkul" [value]="district.kode">
+      <ion-select [(ngModel)]="data.nomatkul" (ionChange)="getDataLog(data.nomatkul)">
+        <ion-select-option *ngFor="let district of selectedState.idmatkul" [value]="district.no">
           {{district.matkul}}</ion-select-option>
       </ion-select>
     </ion-item>

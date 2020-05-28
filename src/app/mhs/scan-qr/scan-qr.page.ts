@@ -50,6 +50,7 @@ export class ScanQrPage implements OnInit {
   clear() {
     this.scannedCode = null;
     this.data = {
+      nomatkul: null,
       matkul: null,
       idkelas: null,
       uid: null,
@@ -67,21 +68,22 @@ export class ScanQrPage implements OnInit {
   }
 
   async dummy() {
-    this.scannedCode = '{"uid":"vj6Sl9bQ1keOuAeH47J24QBt5aJ2","nama":"Filanda Al-Rozaq","semester":"2","prodi":"Teknik Informatika","deskripsi":"gfgf","minggu":"3","sesi":"4","kelas":"IF 2B Regular","tanggal":"2020, Mei 27","idkelas":"ifb2019","idmatkul":"1","jeniskuliah":"Praktikum","metodekuliah":"Online"}';
+    this.scannedCode = '{"idmatkul":"if214","matkul":"Pem. Berorientasi Objek","nomatkul":2,"uid":"vj6Sl9bQ1keOuAeH47J24QBt5aJ2","nama":"Filanda Al-Rozaq","semester":"2","prodi":"Teknik Informatika","deskripsi":"ccamisado","minggu":"4","sesi":"5","kelas":"IF 2B Regular","tanggal":"2020, Mei 28","idkelas":"ifb2019","jeniskuliah":"Praktikum","metodekuliah":"Online"}';
     this.data = await JSON.parse(this.scannedCode);
 
     //get current time
     var d = new Date();
     this.data.jam = d.getHours() + ':' + d.getMinutes();
-
+  /*
     firebase.database().ref(`pengajaran/${this.data.idkelas}/idmatkul/${this.data.idmatkul}`).on('value', async ref => {
       this.data.matkul = await ref.val().matkul
       console.log(this.data.matkul)
-    })
+    })*/
   }
 
   scannedCode = null;
   data = {
+    nomatkul:null,
     matkul: null,
     idkelas: null,
     uid: null,
@@ -111,13 +113,9 @@ export class ScanQrPage implements OnInit {
       this.notif('QR Code tersebut tidak diperuntukkan untuk kelas anda')
     } else {
       try{
-        var n
-        await firebase.database().ref(`test`).on('value', async get =>{
-          n = await get.val().jml_absen
-        })
 
       //set absensi mhs
-      await firebase.database().ref(`absen_mhs/${this.nim}/${this.data.idmatkul}/${this.data.tanggal}/`).set({
+      await firebase.database().ref(`absen_mhs/${this.nim}/${this.data.idmatkul}-${this.data.tanggal}/`).set({
         nim: this.nim,
         nama: this.nama,
         matkul: this.data.matkul,
@@ -129,11 +127,12 @@ export class ScanQrPage implements OnInit {
         kelas: this.data.kelas,
         tanggal: this.data.tanggal,
         jam: this.data.jam,
-        idmatkul: this.data.idmatkul
+        idmatkul: this.data.idmatkul,
+        
       })
 
       //set absensi kelas
-      await firebase.database().ref(`absen_kelas/${this.data.uid}/${this.data.idkelas}/${this.data.idmatkul}/${this.data.tanggal}/${this.nim}/`).set({
+      await firebase.database().ref(`absen_kelas/${this.data.uid}/${this.data.idkelas}/${this.data.idmatkul}-${this.data.tanggal}/${this.nim}/`).set({
         nim: this.nim,
         nama: this.nama,
         matkul: this.data.matkul,
@@ -148,16 +147,19 @@ export class ScanQrPage implements OnInit {
         idmatkul: this.data.idmatkul
       })
 
-     
-      
-      var m = n + 1
-      console.log(n+' m = '+m)
-      //push absensi
-      await firebase.database().ref(`test/absen`).push(this.nim)
-      await firebase.database().ref(`test`).update({
-        jml_absen : m
+      //set absensi dosen
+      await firebase.database().ref(`absen_dosen/${this.data.uid}/${this.data.idkelas}-${this.data.idmatkul}-${this.data.tanggal}/`).set({
+        matkul: this.data.matkul,
+        idkelas: this.data.idkelas,
+        idmatkul: this.data.idmatkul,
+        nama_dosen: this.data.nama,
+        deskripsi: this.data.deskripsi,
+        minggu: this.data.minggu,
+        sesi: this.data.sesi,
+        kelas: this.data.kelas,
+        tanggal: this.data.tanggal,
       })
-
+      
       this.notif('Anda telah berhasil melakukan absen')
     }catch(e){
       this.notif(e)   

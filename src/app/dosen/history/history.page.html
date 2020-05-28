@@ -11,19 +11,18 @@
   <ion-card *ngFor="let x of dataAbsen">
     <ion-card-header>
       <ion-card-title>
-        {{x.kelas}}
+        {{x.kelas}}, {{x.tanggal}}
       </ion-card-title>
       <ion-card-title>
         {{x.matkul}}
       </ion-card-title>
-      <ion-card-subtitle color="success">
-        Jumlah Hadir : {{x.jml_absen}} orang
-      </ion-card-subtitle>
     </ion-card-header>
     <ion-card-content>
-      <ion-label>
-        Yang Hadir :
-      </ion-label>
+    <ion-card-subtitle color="success">
+      Minggu-ke : {{x.minggu}} <br>
+      Sesi : {{x.sesi}} <br>
+      Deskripsi : {{x.deskripsi}}
+    </ion-card-subtitle>
     </ion-card-content>
   </ion-card>
 </ion-content>

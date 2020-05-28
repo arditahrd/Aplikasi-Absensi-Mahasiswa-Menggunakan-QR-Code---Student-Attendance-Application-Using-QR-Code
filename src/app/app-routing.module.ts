@@ -32,13 +32,10 @@ const routes: Routes = [
     loadChildren: () => import('./dosen/home/home.module').then( m => m.HomePageModule)
   },
   {
-    path: 'historymhs',
-    loadChildren: () => import('./historymhs/historymhs.module').then( m => m.HistorymhsPageModule)
-  },
-  {
     path: 'tu',
     loadChildren: () => import('./tu/home/home.module').then( m => m.HomePageModule)
-  },  {
+  },
+  {
     path: 'create-absen',
     loadChildren: () => import('./dosen/create-absen/create-absen.module').then( m => m.CreateAbsenPageModule)
   },

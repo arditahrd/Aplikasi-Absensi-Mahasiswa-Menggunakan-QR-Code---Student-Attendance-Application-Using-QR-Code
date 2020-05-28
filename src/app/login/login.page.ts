@@ -27,6 +27,13 @@ export class LoginPage implements OnInit {
   ngOnInit() {
   }
 
+  clear(){
+    this.username = null
+    this.password = null
+    this.akses = null
+  }
+
+
   setAkses(n) {
     this.akses = n
   }
@@ -68,6 +75,7 @@ export class LoginPage implements OnInit {
             this.route.navigate(['/mhs'])
           }
           this.notif('Login Berhasil')
+          this.clear()
         })
 
       })

@@ -22,9 +22,9 @@ export class RiwayatAbsenPage implements OnInit {
   async getData() {
     await this.getNim()
 
-    this.databs = await firebase.database().ref(`absen_mhs/3311801022/if214`).on('value', async val => {
+    this.databs = await firebase.database().ref(`absen_mhs/3311801022/`).on('value', async val => {
       this.childData = val.val()
-      this.key = snapshotToArray(val)
+      this.key = await snapshotToArray(val)
 
     })
     /*    this.data = await snapshotToArray(val)
@@ -43,10 +43,11 @@ export class RiwayatAbsenPage implements OnInit {
   key
   childData
 
-  getNim() {
-    this.str.get('nim').then(res => {
-      this.nim = res
+  async getNim() {
+    await this.str.get('nim').then(data => {
+      this.nim = data
     })
+    console.log('nim'+this.nim)
   }
 
   uids = []
